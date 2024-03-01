@@ -1,0 +1,21 @@
+.table {
+    td,
+    th {
+        vertical-align: middle;
+        white-space:nowrap;
+        &.w_70 {
+            width: 70px;
+        }
+        &.w_100 {
+            width: 100px; 
+        }
+    }
+}
+
+.datatable-wrap{
+    max-width: 100%;
+    overflow-x: auto;
+    .dtr-hidden{
+        display: revert!important;
+    }
+}

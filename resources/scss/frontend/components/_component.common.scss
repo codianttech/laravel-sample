@@ -1,0 +1,194 @@
+///Upload Photos
+.uploadPhoto {
+    width: 110px;
+    height: 110px;
+    .img-box {
+        img {
+            height: 100%;
+			width: 100%;
+			object-fit: cover;
+        }
+    }
+    label {
+        height: 30px;
+        width: 30px;
+        background: $primary;
+        cursor: pointer;
+        bottom: 7px;
+        right: -1px;
+        color: $white;
+        input[type="file"] {
+            display: none;
+        }
+        em{
+            font-size: 14px;            
+        }
+    }
+}
+a{
+    cursor: pointer;
+}
+///For Tabs table and Filter
+.nk-block-head-content-tabs{
+    .nk-block-tools{
+        display: none;
+        &.active{display: flex;}
+    }
+}
+
+//Scrollbar
+::-webkit-scrollbar {
+    width: 6px;height: 6px;
+    @media (max-width: 991px){
+        width: 4px;height: 4px;
+    }
+}
+::-webkit-scrollbar-track {
+    box-shadow: none; 
+	background-color: #e2e5e6;
+}
+::-webkit-scrollbar-thumb {
+    box-shadow: none; 
+	background-color:$primary; 
+}
+// geoareaMap
+.geoareaMap{
+    height:480px;
+    // media
+    @include media-breakpoint-down(lg){
+        height:360px;
+    }
+    @include media-breakpoint-down(sm){
+        height:320px;
+    }
+    // media !!
+} 
+
+.tinymce-toolbar-arabic{
+    + .tox-tinymce{direction: rtl;}
+}
+
+// range slider
+
+.noUi{
+    &-horizontal{
+        height: 10px!important;
+    }
+    &-connect{
+        background: #5d1d88!important;
+    }
+    &-handle{
+        width: 30px!important; height: 30px!important; border-radius: 50%!important; top: -11px!important;
+        &:before{
+        left: 10px!important;
+        top: 6px!important;
+        }
+    }
+} 
+
+.filter-wg{
+    overflow: visible;
+    .dropdown-body{overflow: visible !important; max-height: inherit !important; }
+}
+
+.card+.card:not(.card .card+.card){
+    @include media-breakpoint-down(lg){
+        margin-top: 15px;
+    }
+}
+
+.nk-content{
+    @include media-breakpoint-between(sm, lg){
+        padding: 15px;
+    }
+    @include media-breakpoint-down(xl){
+        .page-title{
+            font-size: 22px;
+        }
+    }
+    @include media-breakpoint-down(lg){
+        &-body {
+            > .nk-block-head-sm{
+                &:first-child {
+                    padding-bottom: 15px;
+                }
+            }
+        }
+    }
+    @include media-breakpoint-down(md){
+        .page-title{
+            font-size: 1.3rem;
+            &.nk-block-title{
+                margin-bottom: 5px;
+            }
+        }
+        .nk-block-title{font-size: 17px; margin-bottom: 3px;}
+    }
+    @include media-breakpoint-down(sm){
+        padding-top: 15px;
+        padding-bottom: 15px;
+        .page-title{
+            font-size: 1.2rem;
+        }
+    }
+}
+.card{
+    @include media-breakpoint-down(sm){
+        .nav.nav-tabs {
+            flex-wrap: nowrap;
+            white-space: nowrap;
+            overflow: auto;
+            padding-bottom: 5px;
+            padding-left: 10px;
+            .nav-link.active:after{display: none;}
+        }
+    }
+}
+.nk-block-tools-toggle .toggle-expand-content{
+    @include media-breakpoint-down(sm){
+        margin-left: -11px;
+        margin-right: -11px;
+    }
+}
+.error-help-block{
+    font-size: 12px;
+    color: #d1475a;
+}
+.imgView{
+    margin-top: 15px;
+    &_items{
+        position: relative;
+        margin-bottom: 10px;  
+        width: 80px;        
+        &_cross{ 
+            position: absolute;
+            top: -6px;
+            right: -6px;
+            cursor: pointer;
+            width: 18px;
+            height: 18px;
+            background-color: #d1475a;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 20px;
+            z-index: 1;
+            em{
+                color: #ffffff;
+                font-size: 12px;
+                position: relative;
+                top: -1px;
+            }
+        }      
+        img{
+            border: 1px solid #dbdfea;
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            overflow: hidden;
+            border-radius: 5px;
+        }
+        &:not(:last-child){
+            margin-right: 10px;
+        }
+    }
+}

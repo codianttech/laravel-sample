@@ -1,0 +1,7 @@
+* text=auto
+*.php diff=php eol=lf
+*.sh text eol=lf
+
+/.github export-ignore
+CHANGELOG.md export-ignore
+.styleci.yml export-ignore

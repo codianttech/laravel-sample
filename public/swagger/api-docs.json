@@ -1,0 +1,737 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "Api Documentation",
+        "version": "1.0.3",
+        "title": "documentation"
+    },
+    "host": "",
+    "basePath": "/api/v1/",
+    "schemes": [
+        "http",
+        "https"
+    ],
+    "securityDefinitions": {
+        "Bearer": {
+            "type": "apiKey",
+            "name": "Authorization",
+            "in": "header"
+        }
+    },
+    "tags": [
+        {
+            "name": "Master",
+            "description": "All dropdown values and master listing data"
+        },
+        {
+            "name": "Setting",
+            "description": "Setting api to get data on splash screen or user config"
+        },
+        {
+            "name": "Auth",
+            "description": "Operations about Authentication"
+        },
+        {
+            "name": "Account",
+            "description": "Operations related to user account"
+        },
+        {
+            "name": "Users",
+            "description": "Operations about user"
+        }     
+    ],
+   
+    "paths": {
+        "/countries": {
+            "get": {
+                "tags": [
+                    "Master"
+                ],
+                "description": "Country list",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "Country collection",
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                }
+            }
+        },
+        "/states": {
+            "get": {
+                "tags": [
+                    "Master"
+                ],
+                "description": "States list",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "country_id",
+                        "description": "Country",
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "State collection.",
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                }
+            }
+        },
+        "/cities": {
+            "get": {
+                "tags": [
+                    "Master"
+                ],
+                "description": "City list",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "country_id",
+                        "description": "Country",
+                        "type": "integer"
+                    },
+                    {
+                        "in": "query",
+                        "name": "state_id",
+                        "description": "State",
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "City collection.",
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                }
+            }
+        },
+        "/settings": {
+            "get": {
+                "tags": [
+                    "Setting"
+                ],
+                "description": "Setting",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "header",
+                        "name": "device-token",
+                        "description": "Device token",
+                        "type": "string"
+                    },
+                    {
+                        "in": "header",
+                        "name": "app-version-code",
+                        "description": "Device token",
+                        "type": "string"
+                    },
+                    {
+                        "in": "header",
+                        "name": "app-version-name",
+                        "description": "Device token",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Setting object.",
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                }
+            }
+        },
+        "/register": {
+            "post": {
+                "tags": [
+                    "Auth"
+                ],
+                "description": "User registration",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "User Login",
+                        "type": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref":"#/definitions/register"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "User object",
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                }
+            }
+        },
+        "/login": {
+            "post": {
+                "tags": [
+                    "Auth"
+                ],
+                "description": "Login",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "User Login",
+                        "type": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref":"#/definitions/login"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "User object",
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                }
+            }
+        },
+        "/verify-otp": {
+            "post": {
+                "tags": [
+                    "Auth"
+                ],
+                "description": "Verify OTP",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "OTP Verify",
+                        "type": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/verify-otp"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Auth object.",
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                }
+            }
+        },
+        "/send-otp": {
+            "post": {
+                "tags": [
+                    "Auth"
+                ],
+                "description": "",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "",
+                        "type": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref":"#/definitions/send-otp"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Auth object.",
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ]
+            }
+        },
+        "/reset-password": {
+            "post": {
+                "tags": [
+                    "Auth"
+                ],
+                "description": "Reset password",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "Reset password",
+                        "type": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref":"#/definitions/reset-password"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Auth object.",
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                }
+            }
+        },
+        "/logout": {
+            "get": {
+                "tags": [
+                    "Account"
+                ],
+                "description": "Account logout",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "Account object.",
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ]
+            }
+        },
+        "/users": {
+            "get": {
+                "tags": [
+                    "Users"
+                ],
+                "description": "user list",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "search",
+                        "description": "search user by name",
+                        "type": "string"
+                       
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "game request object.",
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ]
+            }
+        },
+        "/users/{id}": {
+            "get": {
+                "tags": [
+                    "Users"
+                ],
+                "description": "user list",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "user id",
+                        "type": "string",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "game request object.",
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Users"
+                ],
+                "description": "update user profile",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "user id",
+                        "type": "string",
+                        "required": true
+                    },
+                    {
+                        "in": "formData",
+                        "name": "_method",
+                        "description": "method",
+                        "type": "string",
+                        "required": true,
+                        "default": "PUT"
+                    },
+                    {
+                        "in": "formData",
+                        "name": "name",
+                        "description": "User name",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "formData",
+                        "name": "email",
+                        "description": "User email",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "formData",
+                        "name": "phone_code",
+                        "description": "User country_code 91",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "formData",
+                        "name": "phone_number",
+                        "description": "User phone number",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "in": "formData",
+                        "name": "profile_image",
+                        "description": "User profile image",
+                        "type": "file"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "game request object.",
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "Users"
+                ],
+                "description": "Delete User",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "user id",
+                        "type": "string",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "",
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ]
+            }
+        },    
+        "/change-password": {
+            "post": {
+                "tags": [
+                    "Account"
+                ],
+                "description": "change password",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "change password",
+                        "type": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref":"#/definitions/change-password"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "change password object.",
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ]
+            }
+        }
+    },
+    "definitions": {
+        "register": {
+            "properties": {
+                "email": {
+                    "type": "string",
+                    "required": true
+                },
+                "name": {
+                    "type": "string",
+                    "required": true
+                },
+                "phone_code": {
+                    "type": "string",
+                    "required": true
+                },
+                "phone_number": {
+                    "type": "string",
+                    "required": true
+                },
+                "password": {
+                    "type": "string",
+                    "required": true
+                },
+                "confirm_password": {
+                    "type": "string"
+                },
+                "device_id": {
+                    "type": "string",
+                    "required": true
+                },
+                "device_type": {
+                    "type": "string",
+                    "required": true,
+                    "enum": [
+                        "android",
+                        "ios"
+                    ]
+                }
+            }
+        },
+        "login": {
+            "properties": {
+                "email": {
+                    "type": "string",
+                    "required": true
+                },
+                "password": {
+                    "type": "string",
+                    "required": true
+                },
+                "device_id": {
+                    "type": "string",
+                    "required": true
+                },
+                "device_type": {
+                    "type": "string",
+                    "required": true,
+                    "enum": [
+                        "android",
+                        "ios"
+                    ]
+                }
+            }
+        },
+        "reset-password": {
+            "properties": {
+                "email": {
+                    "type": "string"
+                },
+                "otp": {
+                    "type": "string"
+                },
+                "password": {
+                    "type": "string"
+                },
+                "confirm_password": {
+                    "type": "string"
+                }
+            }
+        },
+        "send-otp": {
+            "properties": {
+                "email": {
+                    "type": "string"
+                },
+                "type": {
+                    "type": "string",
+                    "enum": [
+                        "registration",
+                        "reset-password"
+                    ]
+                }
+            }
+        },
+        "verify-otp": {
+            "properties": {
+                "email": {
+                    "type": "string"
+                },
+                "otp": {
+                    "type": "string"
+                },
+                "device_id": {
+                    "type": "string"
+                },
+                "device_type": {
+                    "type": "string",
+                    "enum": [
+                        "android",
+                        "ios"
+                    ]
+                },
+                "type": {
+                    "type": "string",
+                    "enum": [
+                        "registration",
+                        "reset-password",
+                        "verify-otp"
+                    ]
+                }
+            }
+        },
+        "change-password": {
+            "properties": {
+                "current_password": {
+                    "type": "string"
+                },
+                "password": {
+                    "type": "string"
+                },
+                "password_confirmation": {
+                    "type": "string"
+                }
+            }
+        }        
+    }
+}
